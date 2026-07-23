@@ -1,0 +1,67 @@
+{% load static icons %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Organização Casamento{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'website/design.css' %}">
+    <link rel="stylesheet" href="{% static 'website/layout.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="shell">
+        <aside class="sidebar">
+            <a class="sidebar-logo" href="/">
+                {% icon 'house' %}
+                <span>Organização<br>Casamento</span>
+            </a>
+
+            <ul class="sidebar-nav">
+                <li>
+                    <a class="sidebar-link {% if request.path == '/' %}ativo{% endif %}" href="/">
+                        {% icon 'house' %} Início
+                    </a>
+                </li>
+                {% for modulo in menu_lateral %}
+                <li>
+                    {% if modulo.url %}
+                    <a class="sidebar-link {% if request.path|startswith:modulo.url %}ativo{% endif %}" href="{{ modulo.url }}">
+                        {% icon modulo.icon %} {{ modulo.nome }}
+                    </a>
+                    {% else %}
+                    <span class="sidebar-link indisponivel">
+                        {% icon modulo.icon %} {{ modulo.nome }}
+                    </span>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+
+            <div class="sidebar-footer">Organização Casamento · v0.1</div>
+        </aside>
+
+        <div class="sidebar-overlay"></div>
+
+        <div class="conteudo">
+            <header class="topbar">
+                <button class="topbar-menu-btn" type="button" aria-label="Abrir menu">
+                    {% icon 'menu' %}
+                </button>
+                <a class="sidebar-logo topbar-brand" href="/" style="margin: 0;">
+                    {% icon 'house' %}
+                    <span>Organização Casamento</span>
+                </a>
+                <div class="topbar-acoes">
+                    {% block topo_acoes %}{% endblock %}
+                </div>
+            </header>
+
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <script src="{% static 'website/app.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

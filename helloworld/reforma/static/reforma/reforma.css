@@ -1,0 +1,113 @@
+.pagina-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.pagina-header h1 {
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
+  margin: 0;
+}
+
+.aviso {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  color: var(--text-muted);
+}
+
+.aviso .icone {
+  color: var(--primary);
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.card-item {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.1rem;
+}
+
+.card-item h3 {
+  font-size: 1.1rem;
+  margin: 0 0 0.35rem;
+}
+
+.card-item-meta {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin: 0 0 0.6rem;
+}
+
+.card-item-custos {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: var(--text);
+  margin: 0 0 1rem;
+}
+
+.prioridade {
+  display: inline-flex;
+  gap: 5px;
+  margin-bottom: 1rem;
+}
+
+.prioridade i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--details);
+}
+
+.prioridade i.on {
+  background: var(--primary);
+}
+
+.card-item-data {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.form-card {
+  padding: 2.5rem;
+  max-width: 640px;
+}
+
+.campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.campo-full {
+  grid-column: 1 / -1;
+}
+
+.form-card .btn {
+  justify-self: start;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 560px) {
+  .campos {
+    grid-template-columns: 1fr;
+  }
+
+  .form-card {
+    padding: 1.75rem;
+  }
+}

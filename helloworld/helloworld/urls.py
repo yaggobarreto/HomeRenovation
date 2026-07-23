@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('website.urls')),
     path('usuarios/', include('usuarios.urls')),
-    # path('reforma/', include('reforma.urls')),
+    path('reforma/', include('reforma.urls')),
+    path('api/reforma/', include('reforma.api_urls')),
     # path('metas/', include('metas.urls')),
 ]

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static icons %}
+
+{% block title %}Reforma — Organização Casamento{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'reforma/reforma.css' %}">
+{% endblock %}
+
+{% block topo_acoes %}
+<a class="btn btn-primary" href="{% url 'criar_reforma' %}">
+    {% icon 'plus' 'icone-sm' %} Novo item
+</a>
+{% endblock %}
+
+{% block content %}
+<section class="pagina">
+    <div class="pagina-header">
+        <div>
+            <p class="eyebrow">Módulo M-02</p>
+            <h1>Reforma</h1>
+        </div>
+    </div>
+
+    <div class="stats-row">
+        <div class="card stat-card surgir">
+            <strong>{{ reformas|length }}</strong>
+            <span>Itens cadastrados</span>
+        </div>
+        <div class="card stat-card surgir">
+            <strong>{{ concluidos }}</strong>
+            <span>Concluídos</span>
+        </div>
+        <div class="card stat-card surgir">
+            <strong>{{ total_estimado }}</strong>
+            <span>Custo estimado total</span>
+        </div>
+    </div>
+
+    {% if not reformas %}
+        <div class="card aviso surgir">
+            {% icon 'hammer' %}
+            <p>Nenhum item registrado ainda — comece adicionando o primeiro item da reforma.</p>
+        </div>
+    {% else %}
+        <div class="grid-cards">
+            {% for item in reformas %}
+            <article class="card card-item surgir">
+                <div class="card-item-top">
+                    <div class="card-modulo-icone">{% icon 'hammer' %}</div>
+                    <span class="badge" data-status="{{ item.status }}">{{ item.get_status_display }}</span>
+                </div>
+                <h3>{{ item.nome }}</h3>
+                <p class="card-item-meta">{{ item.categoria }}</p>
+                <p class="card-item-custos">
+                    <span>{{ item.custo_estimado }} est.</span>
+                    <span>{{ item.custo_real }} real</span>
+                </p>
+                <div class="prioridade" aria-label="Prioridade {{ item.prioridade }} de 5">
+                    {% for n in "12345" %}
+                        <i class="{% if forloop.counter <= item.prioridade %}on{% endif %}"></i>
+                    {% endfor %}
+                </div>
+                <p class="card-item-data">Previsto para {{ item.data_estimavel|date:"d/m/Y" }}</p>
+            </article>
+            {% endfor %}
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

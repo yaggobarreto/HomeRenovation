@@ -16,7 +16,7 @@ class ReformaItem(models.Model):
     nome = models.CharField(max_length=250)
     categoria = models.CharField(max_length=100)
     custo_estimado = models.DecimalField(max_digits=10, decimal_places=2)
-    custo_real = models.DecimalField(max_digits=10, decimal_places=2)
+    custo_real = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     status = models.CharField(
         max_length=20, 
         choices=Status.choices,

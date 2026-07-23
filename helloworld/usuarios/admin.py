@@ -3,10 +3,9 @@ from .models import Usuario
 
 
 
-
+@admin.register(Usuario)
 class UsuarioAdmin(admin.ModelAdmin):
     list_display = ('nome', 'email')
 
 
 
-admin.site.register(Usuario, UsuarioAdmin)

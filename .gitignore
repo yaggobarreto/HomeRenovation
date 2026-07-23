@@ -19,3 +19,6 @@ media/
 .vscode/
 .idea/
 *.swp
+
+# Imagem original colada pelo usuario - a copia usada fica em website/static/
+helloworld/website/images/

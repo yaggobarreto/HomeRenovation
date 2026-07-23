@@ -1,16 +1,63 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Organização Casamento</title>
-</head>
-<body>
-    <h1>Organização Casamento</h1>
-    <p>Página inicial funcionando.</p>
+{% extends "base.html" %}
+{% load static icons %}
 
-    <ul>
-        <li><a href="/usuarios/">Usuários</a></li>
-        <li><a href="/admin/">Admin</a></li>
-    </ul>
-</body>
-</html>
+{% block title %}Organização Casamento — Início{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'website/home.css' %}">
+{% endblock %}
+
+{% block topo_acoes %}
+<a class="btn btn-primary" href="/reforma/">Abrir Reforma {% icon 'arrow-right' 'icone-sm' %}</a>
+{% endblock %}
+
+{% block content %}
+<header class="banner" style="background-image: linear-gradient(180deg, rgba(33,28,23,.35), rgba(24,20,16,.85)), url('{% static "website/img/hero-casa.png" %}');">
+    <div class="banner-texto">
+        <p class="eyebrow">Nosso painel</p>
+        <h1>Bem-vindos ao<br>nosso projeto ❤️</h1>
+        <p class="banner-sub">Organizando cada detalhe da nossa futura casa.</p>
+        <a class="btn btn-primary btn-banner" href="#modulos">Ver módulos</a>
+    </div>
+</header>
+
+<section class="pagina">
+    <div class="stats-row">
+        <div class="card stat-card surgir">
+            <strong>{{ total_modulos }}</strong>
+            <span>Módulos no plano</span>
+        </div>
+        <div class="card stat-card surgir">
+            <strong>{{ em_andamento }}</strong>
+            <span>Em andamento</span>
+        </div>
+        <div class="card stat-card surgir">
+            <strong>{{ planejamento }}</strong>
+            <span>Em planejamento</span>
+        </div>
+    </div>
+
+    <div class="section-head" id="modulos">
+        <p class="eyebrow">Módulos</p>
+        <h2>O que já existe e o que vem a seguir</h2>
+    </div>
+
+    <div class="grid-cards">
+        {% for modulo in modulos %}
+        <article class="card card-modulo surgir">
+            <div class="card-modulo-icone">{% icon modulo.icon %}</div>
+            <h3>{{ modulo.nome }}</h3>
+            <p>{{ modulo.descricao }}</p>
+            <div class="card-modulo-footer">
+                <span class="badge" data-status="{{ modulo.status }}">{{ modulo.status_label }}</span>
+                {% if modulo.url %}
+                    <a class="card-link" href="{{ modulo.url }}">Abrir {% icon 'arrow-right' 'icone-sm' %}</a>
+                {% else %}
+                    <span class="card-soon">Em breve</span>
+                {% endif %}
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
